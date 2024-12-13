@@ -1,0 +1,12 @@
+# Dockerfile для FastAPI сервиса
+FROM python:3.9
+
+WORKDIR /app
+
+COPY src/fastapi_service /app
+
+RUN pip install fastapi pika uvicorn
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

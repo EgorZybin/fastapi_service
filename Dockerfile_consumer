@@ -1,0 +1,15 @@
+FROM python:3.9
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Добавляем путь к src в PYTHONPATH
+ENV PYTHONPATH="/app/src:${PYTHONPATH}"
+
+RUN pip install pika selenium
+
+# Копируем исходный код всей папки src
+COPY ../src /app/src
+
+# Команда для запуска Consumer
+CMD ["python", "src/consumer_service/consumer.py"]
